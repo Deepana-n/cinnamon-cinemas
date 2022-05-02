@@ -1,8 +1,9 @@
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -29,13 +30,18 @@ class CinnamonCinemasTest {
         assertFalse(cinemaObj.allocateSeats(seatsRequested));
     }
 
-    @Test
-    public void checkSuccessfulListOfAllocatedSeats(){
+    @ParameterizedTest(name = "{index}) For seats: \"{0}\" the outcome is \"{1}\"")
+    @CsvSource(textBlock = """
+            2,  A1 A2,
+            4,  A1 A2 A3 A4,
+            7,  A1 A2 A3 A4 A5 B1 B2,
+            15, A1 A2 A3 A4 A5 B1 B2 B3 B4 B5 C1 C2 C3 C4 C5
+            """)
+    public void checkSuccessfulListOfAllocatedSeats(int seatsRequested, String expectedResult) {
         cinemaObj = new CinnamonCinemas(15);
-        int seatsRequested = 5;
-        List<String> expectedAllocatedSeatsList = List.of("A1","A2","A3","A4","A5");
+        List<String> expectedResultList = Arrays.asList(expectedResult.split(" "));
         cinemaObj.allocateSeats(seatsRequested);
-        assertEquals(expectedAllocatedSeatsList,cinemaObj.getListOfSeatsAllocated());
+        assertEquals(expectedResultList,cinemaObj.getListOfSeatsAllocated());
     }
 
 
