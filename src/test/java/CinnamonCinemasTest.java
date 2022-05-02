@@ -17,4 +17,10 @@ class CinnamonCinemasTest {
         assertTrue(cinemaObj.allocateSeats(seatsRequested));
     }
 
+    @Test
+    public void checkUnSuccessfulAllocation(){
+        int seatsRequested = 16;
+        assertTrue(cinemaObj.allocateSeats(seatsRequested));
+    }
+
 }
