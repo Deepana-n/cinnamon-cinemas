@@ -19,7 +19,7 @@ left to right, front to back
 To run application in terminal, run the following command
 
 ```bash
-mvn exec:java -Dexec.mainClass="Main"
+mvn exec:java -Dexec.mainClass="CinnamonCinemas"
 ```
 ## Running Tests
 
