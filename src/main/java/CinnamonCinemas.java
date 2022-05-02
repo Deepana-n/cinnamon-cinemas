@@ -16,6 +16,7 @@ public class CinnamonCinemas {
 
     public boolean allocateSeats(int seatsRequested) {
         boolean ableToAllocate = false;
+        if(seatsRequested > totalAvailableSeats) return false;
         for(int row = 0; row < seatMap.length; row++){
             for(int seat = 0; seat < seatMap[0].length; seat++){
                 if(!seatMap[row][seat] && seatsRequested > 0){
