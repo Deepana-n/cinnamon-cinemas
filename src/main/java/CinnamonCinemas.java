@@ -49,6 +49,7 @@ public class CinnamonCinemas {
         Random rand = new Random();
         boolean successfulAllocation;
         System.out.println("****Welcome to Cinnamon Cinemas random seat allocation application****");
+        System.out.println("Number of seats that will be generated will be from 1-3");
         System.out.println();
         do{
             int numberOfSeats = rand.nextInt(3) + 1;
