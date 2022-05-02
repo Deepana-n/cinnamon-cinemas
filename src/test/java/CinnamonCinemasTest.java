@@ -1,9 +1,11 @@
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class CinnamonCinemasTest {
     private CinnamonCinemas cinemaObj;
@@ -25,6 +27,15 @@ class CinnamonCinemasTest {
     public void checkInvalidSeatAllocation(int seatsRequested) {
         cinemaObj = new CinnamonCinemas(15);
         assertFalse(cinemaObj.allocateSeats(seatsRequested));
+    }
+
+    @Test
+    public void checkSuccessfulListOfAllocatedSeats(){
+        cinemaObj = new CinnamonCinemas(15);
+        int seatsRequested = 5;
+        List<String> expectedAllocatedSeatsList = List.of("A1","A2","A3","A4","A5");
+        cinemaObj.allocateSeats(seatsRequested);
+        assertEquals(expectedAllocatedSeatsList,cinemaObj.getListOfSeatsAllocated());
     }
 
 
