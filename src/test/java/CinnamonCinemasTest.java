@@ -1,5 +1,4 @@
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -65,15 +64,13 @@ class CinnamonCinemasTest {
         }
     }
 
-    @Disabled
     @ParameterizedTest(name = "{index}) For seats: \"{0}\" the outcome is \"{1}\"")
     @CsvSource(textBlock = """
+            1, A1
             2,  A1 A2,
-            4,  A1 A2 A3 A4,
-            7,  A1 A2 A3 A4 A5 B1 B2,
-            15, A1 A2 A3 A4 A5 B1 B2 B3 B4 B5 C1 C2 C3 C4 C5
+            3,  A1 A2 A3,
             """)
-    public void checkSuccessfulListOfAllocatedSeats(int seatsRequested, String expectedResult) {
+    public void checkSuccessfulListOfSinglyAllocatedSeats(int seatsRequested, String expectedResult) {
         cinemaObj = new CinnamonCinemas(15);
         List<String> expectedResultList = Arrays.asList(expectedResult.split(" "));
         cinemaObj.allocateSeats(seatsRequested);
