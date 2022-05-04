@@ -61,7 +61,10 @@ public class CinnamonCinemas {
             int numberOfSeats = rand.nextInt(3) + 1;
             System.out.println("The number of seats to be allocated " + numberOfSeats);
             successfulAllocation = cinemaObj.allocateSeats(numberOfSeats);
-            if(successfulAllocation) System.out.println(cinemaObj.getListOfSeatsAllocated());
+            if(successfulAllocation){
+                List<String> seatsList = cinemaObj.getListOfSeatsAllocated();
+                System.out.println("Seats Booked --> "+ seatsList.subList(seatsList.size()-numberOfSeats,seatsList.size()));
+            }
             else System.out.println("Sorry seats cannot be allocated. Not enough available seats left 😭");
             System.out.println();
         }while (successfulAllocation);
