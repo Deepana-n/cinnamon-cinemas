@@ -16,20 +16,26 @@ public class CinnamonCinemas {
 
     public boolean allocateSeats(int seatsRequested) {
         boolean ableToAllocate = false;
-        if(seatsRequested > totalAvailableSeats) return false;
-        for(int row = 0; row < seatMap.length; row++){
-            for(int seat = 0; seat < seatMap[0].length; seat++){
-                if(!seatMap[row][seat] && seatsRequested > 0){
-                    seatMap[row][seat] = true;
-                    ableToAllocate = true;
-                    listOfSeatsAllocated(row,seat);
-                    totalAvailableSeats--;
-                    seatsRequested--;
+        if(validSeatsRequested(seatsRequested)){
+            if(seatsRequested > totalAvailableSeats) return false;
+            for(int row = 0; row < seatMap.length; row++){
+                for(int seat = 0; seat < seatMap[0].length; seat++){
+                    if(!seatMap[row][seat] && seatsRequested > 0){
+                        seatMap[row][seat] = true;
+                        ableToAllocate = true;
+                        listOfSeatsAllocated(row,seat);
+                        totalAvailableSeats--;
+                        seatsRequested--;
+                    }
                 }
+                if(seatsRequested == 0) break;
             }
-            if(seatsRequested == 0) break;
         }
         return ableToAllocate && totalAvailableSeats >= 0;
+    }
+
+    private boolean validSeatsRequested(int seatsRequested){
+        return seatsRequested >= 1 && seatsRequested <=3;
     }
 
     private void listOfSeatsAllocated(int row, int seat){
